@@ -9,7 +9,7 @@ speech enhancement.
 Check the demonstration examples in the [Demo Page](https://audio-agi.github.io/Separate-Anything-You-Describe/)!
 
 <p align="center">
-  <img align="middle" width="800" src="assets/result.png"/>
+  <img align="middle" width="800" src="AudioSep_Demo5.png"/>
 </p>
 
 We will be releasing the code & pre-training models & evaluation benchmark very soon! 
