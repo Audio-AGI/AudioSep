@@ -29,11 +29,10 @@ If you found this tool useful, please consider citing
 ```
 ```bibtex
 @inproceedings{liu22w_interspeech,
-  title={{Separate What You Describe: Language-Queried Audio Source Separation}},
-  author={Xubo Liu and Haohe Liu and Qiuqiang Kong and Xinhao Mei and Jinzheng Zhao and Qiushi Huang and Mark D. Plumbley and Wenwu Wang},
+  title={Separate What You Describe: Language-Queried Audio Source Separation},
+  author={Liu, Xubo and Liu, Haohe and Kong, Qiuqiang and Mei, Xinhao and Zhao, Jinzheng and Huang, Qiushi and Plumbley, Mark D and Wang, Wenwu},
   year=2022,
-  booktitle={Proc. Interspeech 2022},
+  booktitle={Proc. Interspeech},
   pages={1801--1805},
-  doi={10.21437/Interspeech.2022-10894}
 }
 ```
