@@ -15,3 +15,25 @@ Check the demonstration examples in the [Demo Page](https://audio-agi.github.io/
 We will be releasing the code & pre-training models & evaluation benchmark very soon! 
 
 Please stay tuned for further updates and more details!
+
+## Cite this work
+
+If you found this tool useful, please consider citing
+```bibtex
+@article{liu2023separate,
+  title={Separate Anything You Describe},
+  author={Liu, Xubo and Kong, Qiuqiang and Zhao, Yan and Liu, Haohe and Yuan, Yi and Liu, Yuzhuo and Xia, Rui and Wang, Yuxuan and Plumbley, Mark D and Wang, Wenwu},
+  journal={arXiv preprint arXiv:2308.05037},
+  year={2023}
+}
+```
+```bibtex
+@inproceedings{liu22w_interspeech,
+  title={{Separate What You Describe: Language-Queried Audio Source Separation}},
+  author={Xubo Liu and Haohe Liu and Qiuqiang Kong and Xinhao Mei and Jinzheng Zhao and Qiushi Huang and Mark D. Plumbley and Wenwu Wang},
+  year=2022,
+  booktitle={Proc. Interspeech 2022},
+  pages={1801--1805},
+  doi={10.21437/Interspeech.2022-10894}
+}
+```
