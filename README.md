@@ -15,7 +15,7 @@ speech enhancement. Check the separated audio examples in the [Demo Page](https:
 ## TODO
 - [x] AudioSep training & finetuning code release.
 - [x] AudioSep base model checkpoint release.
-- [] Evaluation benchmark release.
+- [ ] Evaluation benchmark release.
 
 <hr>
 
