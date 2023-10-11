@@ -1,0 +1,41 @@
+---
+task_name: AudioSep
+
+data:
+    datafiles:
+        - 'datafiles/template.json'
+
+    sampling_rate: 32000
+    segment_seconds: 5
+    loudness_norm:
+        lower_db: -10
+        higher_db: 10
+    max_mix_num: 2
+
+model:
+    query_net: CLAP
+    condition_size: 512
+    model_type: ResUNet30
+    input_channels: 1
+    output_channels: 1
+    resume_checkpoint: ""
+    use_text_ratio: 1.0
+
+train:
+    optimizer:
+        optimizer_type: AdamW
+        learning_rate: 1e-3
+        warm_up_steps: 10000
+        reduce_lr_steps: 1000000
+        lr_lambda_type: constant_warm_up
+    num_nodes: 1
+    num_workers: 6
+    loss_type: l1_wav
+    sync_batchnorm: True
+    batch_size_per_device: 12
+    steps_per_epoch: 10000  # Every 10000 steps is called an `epoch`.
+    evaluate_step_frequency: 10000     # Evaluate every #evaluate_step_frequency steps.
+    save_step_frequency: 20000  # Save every #save_step_frequency steps.
+    early_stop_steps: 10000001
+    random_seed: 1234
+
