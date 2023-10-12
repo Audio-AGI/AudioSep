@@ -364,6 +364,7 @@ def load_ss_model(
         optimizer_type=None,
         learning_rate=None,
         lr_lambda_func=None,
+        map_location=torch.device('cpu'),
     )
 
     return pl_model
