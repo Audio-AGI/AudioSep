@@ -28,7 +28,7 @@ Clone the repository and setup the conda environment:
   conda env create -f environment.yml && \
   conda activate AudioSep
   ```
-Download [model weights (Google Drive)](https://drive.google.com/drive/folders/1LQIQGieAjMk5i2Hss3R3WxGIsglAsl3v?usp=sharing) at `checkpoint/`.
+Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/main/checkpoint) at `checkpoint/`.
 
 <hr>
 
