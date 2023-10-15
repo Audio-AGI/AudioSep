@@ -5,7 +5,6 @@ import torchaudio
 from models.CLAP.open_clip import create_model
 from models.CLAP.training.data import get_audio_features
 from transformers import RobertaTokenizer
-from utils import ignore_warnings; ignore_warnings()
 
 
 class CLAP_Encoder(nn.Module):
