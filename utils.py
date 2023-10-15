@@ -323,7 +323,7 @@ def loudness(data, input_loudness, target_loudness):
     return output
 
 
-def get_ss_model(configs: Dict) -> nn.Module:
+def get_ss_model(config_yaml) -> nn.Module:
     r"""Load trained universal source separation model.
 
     Args:
@@ -334,6 +334,7 @@ def get_ss_model(configs: Dict) -> nn.Module:
     Returns:
         pl_model: pl.LightningModule
     """
+    configs = parse_yaml(config_yaml)
 
     ss_model_type = configs["model"]["model_type"]
     input_channels = configs["model"]["input_channels"]
