@@ -6,18 +6,20 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.optim.lr_scheduler import LambdaLR
 
+from huggingface_hub import PyTorchModelHubMixin
 
-class AudioSep(pl.LightningModule):
+
+class AudioSep(pl.LightningModule, PyTorchModelHubMixin):
     def __init__(
         self,
-        ss_model: nn.Module,
-        waveform_mixer,
-        query_encoder,
-        loss_function,
-        optimizer_type: str,
-        learning_rate: float,
-        lr_lambda_func,
-        use_text_ratio=1.0,
+        ss_model: nn.Module = None,
+        waveform_mixer = None,
+        query_encoder: nn.Module = None,
+        loss_function = None,
+        optimizer_type: str = None,
+        learning_rate: float = None,
+        lr_lambda_func = None,
+        use_text_ratio: float =1.0,
     ):
         r"""Pytorch Lightning wrapper of PyTorch model, including forward,
         optimization of model, etc.

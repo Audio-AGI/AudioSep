@@ -55,6 +55,24 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
 
 <hr>
 
+To load directly from Hugging Face, you can do the following:
+
+  ```python
+  from models.audiosep import AudioSep
+  from utils import load_separation_model
+
+  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+  model = AudioSep.from_pretrained("")
+
+  audio_file = 'path_to_audio_file'
+  text = 'textual_description'
+  output_file='separated_audio.wav'
+
+  # AudioSep processes the audio at 32 kHz sampling rate  
+  inference(model, audio_file, text, output_file, device)
+  ```
+
 ## Training 
 
 To utilize your audio-text paired dataset:
