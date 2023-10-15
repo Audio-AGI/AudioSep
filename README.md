@@ -37,6 +37,7 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
 
   ```python
   from pipeline import build_audiosep, inference
+  import torch
 
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -54,6 +55,27 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
   ```
 
 <hr>
+
+To load directly from Hugging Face, you can do the following:
+
+  ```python
+  from models.audiosep import AudioSep
+  from utils import get_ss_model
+  import torch
+
+  device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+  ss_model = get_ss_model('config/audiosep_base.yaml')
+
+  model = AudioSep.from_pretrained("nielsr/audiosep-demo", ss_model=ss_model)
+
+  audio_file = 'path_to_audio_file'
+  text = 'textual_description'
+  output_file='separated_audio.wav'
+
+  # AudioSep processes the audio at 32 kHz sampling rate  
+  inference(model, audio_file, text, output_file, device)
+  ```
 
 ## Training 
 
