@@ -60,11 +60,14 @@ To load directly from Hugging Face, you can do the following:
 
   ```python
   from models.audiosep import AudioSep
+  from utils import get_ss_model
   import torch
 
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-  model = AudioSep.from_pretrained("")
+  ss_model = get_ss_model('config/audiosep_base.yaml')
+
+  model = AudioSep.from_pretrained("nielsr/audiosep-demo", ss_model=ss_model)
 
   audio_file = 'path_to_audio_file'
   text = 'textual_description'
