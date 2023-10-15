@@ -37,6 +37,7 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
 
   ```python
   from pipeline import build_audiosep, inference
+  import torch
 
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -59,7 +60,7 @@ To load directly from Hugging Face, you can do the following:
 
   ```python
   from models.audiosep import AudioSep
-  from utils import load_separation_model
+  import torch
 
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

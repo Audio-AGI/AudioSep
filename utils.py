@@ -323,6 +323,35 @@ def loudness(data, input_loudness, target_loudness):
     return output
 
 
+def get_ss_model(configs: Dict) -> nn.Module:
+    r"""Load trained universal source separation model.
+
+    Args:
+        configs (Dict)
+        checkpoint_path (str): path of the checkpoint to load
+        device (str): e.g., "cpu" | "cuda"
+
+    Returns:
+        pl_model: pl.LightningModule
+    """
+
+    ss_model_type = configs["model"]["model_type"]
+    input_channels = configs["model"]["input_channels"]
+    output_channels = configs["model"]["output_channels"]
+    condition_size = configs["model"]["condition_size"]
+    
+    # Initialize separation model
+    SsModel = get_model_class(model_type=ss_model_type)
+
+    ss_model = SsModel(
+        input_channels=input_channels,
+        output_channels=output_channels,
+        condition_size=condition_size,
+    )
+
+    return ss_model
+
+
 def load_ss_model(
     configs: Dict,
     checkpoint_path: str,

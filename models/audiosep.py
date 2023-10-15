@@ -6,6 +6,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.optim.lr_scheduler import LambdaLR
 
+from models.clap_encoder import CLAP_Encoder
+
 from huggingface_hub import PyTorchModelHubMixin
 
 
@@ -14,7 +16,7 @@ class AudioSep(pl.LightningModule, PyTorchModelHubMixin):
         self,
         ss_model: nn.Module = None,
         waveform_mixer = None,
-        query_encoder: nn.Module = None,
+        query_encoder: nn.Module = CLAP_Encoder().eval(),
         loss_function = None,
         optimizer_type: str = None,
         learning_rate: float = None,
