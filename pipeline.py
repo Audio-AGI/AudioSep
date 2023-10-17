@@ -24,7 +24,7 @@ def build_audiosep(config_yaml, checkpoint_path, device):
     return model
 
 
-def inference(model, audio_file, text, output_file, use_chunk=False, device='cuda'):
+def inference(model, audio_file, text, output_file, device='cuda', use_chunk=False):
     print(f'Separate audio from [{audio_file}] with textual query [{text}]')
     mixture, fs = librosa.load(audio_file, sr=32000, mono=True)
     with torch.no_grad():
