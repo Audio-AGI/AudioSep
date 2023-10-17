@@ -24,7 +24,7 @@ def build_audiosep(config_yaml, checkpoint_path, device):
     return model
 
 
-def inference(model, audio_file, text, output_file, device='cuda'):
+def inference(model, audio_file, text, output_file, use_chunk=False, device='cuda'):
     print(f'Separate audio from [{audio_file}] with textual query [{text}]')
     mixture, fs = librosa.load(audio_file, sr=32000, mono=True)
     with torch.no_grad():
@@ -41,9 +41,11 @@ def inference(model, audio_file, text, output_file, device='cuda'):
             "condition": conditions,
         } 
 
-        sep_segment = model.ss_model(input_dict)["waveform"]
-
-        sep_segment = sep_segment.squeeze(0).squeeze(0).data.cpu().numpy()
+        if use_chunk:
+            sep_segment = model.ss_model.chunk_inference(input_dict)
+        else:
+            sep_segment = model.ss_model(input_dict)["waveform"]
+            sep_segment = sep_segment.squeeze(0).squeeze(0).data.cpu().numpy()
 
         write(output_file, 32000, np.round(sep_segment * 32767).astype(np.int16))
         print(f'Write separated audio to [{output_file}]')
