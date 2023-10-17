@@ -76,6 +76,12 @@ To load directly from Hugging Face, you can do the following:
   # AudioSep processes the audio at 32 kHz sampling rate  
   inference(model, audio_file, text, output_file, device)
   ```
+<hr>
+
+Use chunk-based inference to save memory:
+  ```python
+  inference(model, audio_file, text, output_file, device, use_chunk=True)
+  ```
 
 ## Training 
 
