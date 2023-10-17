@@ -652,4 +652,65 @@ class ResUNet30(nn.Module):
 
         return output_dict
 
+    @torch.no_grad()
+    def chunk_inference(self, input_dict):
+        chunk_config = {
+                    'NL': 1.0,
+                    'NC': 3.0,
+                    'NR': 1.0,
+                    'RATE': self.sampling_rate
+                }
+
+        mixtures = input_dict['mixture']
+        conditions = input_dict['condition']
+
+        film_dict = self.film(
+            conditions=conditions,
+        )
+
+        NL = int(chunk_config['NL'] * chunk_config['RATE'])
+        NC = int(chunk_config['NC'] * chunk_config['RATE'])
+        NR = int(chunk_config['NR'] * chunk_config['RATE'])
+
+        L = mixtures.shape[2]
+        
+        out_np = np.zeros([1, L])
+
+        WINDOW = NL + NC + NR
+        current_idx = 0
+
+        while current_idx + WINDOW < L:
+            chunk_in = mixtures[:, :, current_idx:current_idx + WINDOW]
+
+            chunk_out = self.base(
+                mixtures=chunk_in, 
+                film_dict=film_dict,
+            )['waveform']
+            
+            chunk_out_np = chunk_out.squeeze(0).cpu().data.numpy()
+
+            if current_idx == 0:
+                out_np[:, current_idx:current_idx+WINDOW-NR] = \
+                    chunk_out_np[:, :-NR] if NR != 0 else chunk_out_np
+            else:
+                out_np[:, current_idx+NL:current_idx+WINDOW-NR] = \
+                    chunk_out_np[:, NL:-NR] if NR != 0 else chunk_out_np[:, NL:]
+
+            current_idx += NC
+
+            if current_idx < L:
+                chunk_in = mixtures[:, :, current_idx:current_idx + WINDOW]
+                chunk_out = self.base(
+                    mixtures=chunk_in, 
+                    film_dict=film_dict,
+                )['waveform']
+
+                chunk_out_np = chunk_out.squeeze(0).cpu().data.numpy()
+
+                seg_len = chunk_out_np.shape[1]
+                out_np[:, current_idx + NL:current_idx + seg_len] = \
+                    chunk_out_np[:, NL:]
+
+        return out_np
+
 
