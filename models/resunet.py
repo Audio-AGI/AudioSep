@@ -658,7 +658,7 @@ class ResUNet30(nn.Module):
                     'NL': 1.0,
                     'NC': 3.0,
                     'NR': 1.0,
-                    'RATE': self.sampling_rate
+                    'RATE': 32000
                 }
 
         mixtures = input_dict['mixture']
