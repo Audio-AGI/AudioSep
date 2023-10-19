@@ -15,7 +15,7 @@ speech enhancement. Check the separated audio examples in the [Demo Page](https:
 ## TODO
 - [x] AudioSep training & finetuning code release.
 - [x] AudioSep base model checkpoint release.
-- [ ] Evaluation benchmark release.
+- [x] Evaluation benchmark release.
 
 <hr>
 
@@ -110,6 +110,35 @@ Finetune AudioSep from pretrained checkpoint:
   ```
 
 <hr>
+
+## Benchmark Evaluation
+Download the [evaluation data](https://drive.google.com/drive/folders/1PbCsuvdrzwAZZ_fwIzF0PeVGZkTk0-kL?usp=sharing) under the `evaluation/data` folder. The data should be organized as:
+
+```yaml
+evaluation:
+    data:
+        - audioset/
+        - audiocaps/
+        - vggsound/
+        - music/
+        - clotho/
+        - esc50/
+```
+Run benchmark inference script, the results will be saved at `eval_logs/`
+```python
+python benchmark.py --checkpoint_path audiosep_base_4M_steps.ckpt
+
+"""
+Evaluation Results:
+
+VGGSound Avg SDRi: 9.144, SISDR: 9.043
+MUSIC Avg SDRi: 10.508, SISDR: 9.425
+ESC-50 Avg SDRi: 10.040, SISDR: 8.810
+AudioSet Avg SDRi: 7.739, SISDR: 6.903
+AudioCaps Avg SDRi: 8.220, SISDR: 7.189
+Clotho Avg SDRi: 6.850, SISDR: 5.242
+"""
+```
 
 ## Cite this work
 

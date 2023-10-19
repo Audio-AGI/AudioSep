@@ -43,6 +43,7 @@ def inference(model, audio_file, text, output_file, device='cuda', use_chunk=Fal
 
         if use_chunk:
             sep_segment = model.ss_model.chunk_inference(input_dict)
+            sep_segment = np.squeeze(sep_segment)
         else:
             sep_segment = model.ss_model(input_dict)["waveform"]
             sep_segment = sep_segment.squeeze(0).squeeze(0).data.cpu().numpy()
