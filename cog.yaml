@@ -1,0 +1,21 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  gpu: true
+  python_version: "3.11"
+  python_packages:
+    - "torchlibrosa==0.1.0"
+    - "lightning==2.1.0"
+    - "torch==2.0.1"
+    - "transformers==4.28.1"
+    - "braceexpand==0.1.7"
+    - "webdataset==0.2.60"
+    - "soundfile==0.12.1"
+    - "torchaudio==2.0.2"
+    - "torchvision==0.15.2"
+    - "h5py==3.10.0"
+    - "ftfy==6.1.1"
+    - "pandas==2.1.1"
+    - "wget==3.2"
+predict: "predict.py:Predictor"
