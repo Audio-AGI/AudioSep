@@ -100,7 +100,7 @@ data:
         ...
 ```
 
-Train AudioSep from scatch:
+Train AudioSep from scratch:
   ```python
   python train.py --workspace workspace/AudioSep --config_yaml config/audiosep_base.yaml --resume_checkpoint_path checkpoint/ ''
   ```
