@@ -5,7 +5,7 @@
 This repository contains the official implementation of ["Separate Anything You Describe"](https://audio-agi.github.io/Separate-Anything-You-Describe/AudioSep_arXiv.pdf).
 
 We introduce AudioSep, a foundation model for open-domain sound separation with natural language queries. AudioSep demonstrates strong separation performance and impressive zero-shot generalization ability on numerous tasks such as audio event separation, musical instrument separation, and
-speech enhancement. Check the separated audio examples in the [Demo Page](https://audio-agi.github.io/Separate-Anything-You-Describe/)!
+speech enhancement. Check out the separated audio examples on the [Demo Page](https://audio-agi.github.io/Separate-Anything-You-Describe/)!
 
 <p align="center">
   <img align="middle" width="800" src="assets/results.png"/>
