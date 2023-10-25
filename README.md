@@ -4,7 +4,7 @@
 
 This repository contains the official implementation of ["Separate Anything You Describe"](https://audio-agi.github.io/Separate-Anything-You-Describe/AudioSep_arXiv.pdf).
 
-We introduce AudioSep, a foundation model for open-domain sound separation with natural language queries. AudioSep demonstrates strong separation performance and impressive zero-shot generalization ability on numerous tasks, such as audio event separation, musical instrument separation, and speech enhancement. Check out the separated audio examples on the [Demo Page](https://audio-agi.github.io/Separate-Anything-You-Describe/)!
+We introduce AudioSep, a foundation model for open-domain sound separation with natural language queries. AudioSep demonstrates strong separation performance and impressive zero-shot generalisation ability on numerous tasks, such as audio event separation, musical instrument separation, and speech enhancement. Check out the separated audio examples on the [Demo Page](https://audio-agi.github.io/Separate-Anything-You-Describe/)!
 
 <p align="center">
   <img align="middle" width="800" src="assets/results.png"/>
@@ -104,7 +104,7 @@ Train AudioSep from scratch:
   python train.py --workspace workspace/AudioSep --config_yaml config/audiosep_base.yaml --resume_checkpoint_path checkpoint/ ''
   ```
 
-Finetune AudioSep from pretrained checkpoint:
+Finetune AudioSep from pre-trained checkpoint:
   ```python
   python train.py --workspace workspace/AudioSep --config_yaml config/audiosep_base.yaml --resume_checkpoint_path path_to_checkpoint
   ```
@@ -124,7 +124,7 @@ evaluation:
         - clotho/
         - esc50/
 ```
-Run benchmark inference script, the results will be saved at `eval_logs/`
+Run benchmark inference script. The results will be saved at `eval_logs/`
 ```python
 python benchmark.py --checkpoint_path audiosep_base_4M_steps.ckpt
 
