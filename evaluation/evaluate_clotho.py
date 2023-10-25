@@ -46,7 +46,7 @@ class ClothoEvaluator:
         self,
         pl_model: pl.LightningModule
     ) -> Dict:
-        r"""Evalute."""
+        r"""Evaluate."""
 
         print(f'Evaluation on Clotho Evaluation with [caption] queries.')
         
