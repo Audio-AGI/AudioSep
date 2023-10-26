@@ -10,7 +10,7 @@ class LinearProbe(nn.Module):
         Args:
             model: nn.Module
             mlp: bool, if True, then use the MLP layer as the linear probe module
-            freeze: bool, if Ture, then freeze all the CLAP model's layers when training the linear probe
+            freeze: bool, if True, then freeze all the CLAP model's layers when training the linear probe
             in_ch: int, the output channel from CLAP model
             out_ch: int, the output channel from linear probe (class_num)
             act: torch.nn.functional, the activation function before the loss function
