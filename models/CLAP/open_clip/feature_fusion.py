@@ -1,5 +1,5 @@
 """
-Feature Fusion for Varible-Length Data Processing
+Feature Fusion for Variable-Length Data Processing
 AFF/iAFF is referred and modified from https://github.com/YimianDai/open-aff/blob/master/aff_pytorch/aff_net/fusion.py
 According to the paper: Yimian Dai et al, Attentional Feature Fusion, IEEE Winter Conference on Applications of Computer Vision, WACV 2021
 """
