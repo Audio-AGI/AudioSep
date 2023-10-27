@@ -78,7 +78,7 @@ To load directly from Hugging Face, you can do the following:
   ```
 <hr>
 
-Use chunk-based inference to save memory:
+Use chunk-based inference to save the memory:
   ```python
   inference(model, audio_file, text, output_file, device, use_chunk=True)
   ```
