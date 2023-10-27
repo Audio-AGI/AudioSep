@@ -39,17 +39,21 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
   from pipeline import build_audiosep, inference
   import torch
 
+  # Check for GPU availability and set the device
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+  # Build the AudioSeparation (AudioSep) model
   model = build_audiosep(
         config_yaml='config/audiosep_base.yaml', 
         checkpoint_path='checkpoint/audiosep_base_4M_steps.ckpt', 
         device=device)
 
+  # Specify the input audio file, textual description, and output file
   audio_file = 'path_to_audio_file'
   text = 'textual_description'
   output_file='separated_audio.wav'
 
+  # Perform audio source separation
   # AudioSep processes the audio at 32 kHz sampling rate  
   inference(model, audio_file, text, output_file, device)
   ```
@@ -59,21 +63,26 @@ Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/m
 To load directly from Hugging Face, you can do the following:
 
   ```python
+  import torch
   from models.audiosep import AudioSep
   from utils import get_ss_model
-  import torch
+  from pipeline import inference
 
+  # Check for GPU availability
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+  # Load the source separation model from the provided config and model_path
   ss_model = get_ss_model('config/audiosep_base.yaml')
-
   model = AudioSep.from_pretrained("nielsr/audiosep-demo", ss_model=ss_model)
 
+  # Specify input and output files
   audio_file = 'path_to_audio_file'
   text = 'textual_description'
   output_file='separated_audio.wav'
 
-  # AudioSep processes the audio at 32 kHz sampling rate  
+
+  # AudioSep processes the audio at 32 kHz sampling rate
+  # Run audio source separation
   inference(model, audio_file, text, output_file, device)
   ```
 <hr>
