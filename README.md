@@ -112,7 +112,7 @@ Finetune AudioSep from pretrained checkpoint:
 <hr>
 
 ## Benchmark Evaluation
-Download the [evaluation data](https://drive.google.com/drive/folders/1PbCsuvdrzwAZZ_fwIzF0PeVGZkTk0-kL?usp=sharing) under the `evaluation/data` folder. The data should be organized as:
+Download the [evaluation data](https://drive.google.com/drive/folders/1PbCsuvdrzwAZZ_fwIzF0PeVGZkTk0-kL?usp=sharing) under the `evaluation/data` folder. The data should be organized as follows:
 
 ```yaml
 evaluation:
@@ -146,7 +146,7 @@ If you found this tool useful, please consider citing
 ```bibtex
 @article{liu2023separate,
   title={Separate Anything You Describe},
-  author={Liu, Xubo and Kong, Qiuqiang and Zhao, Yan and Liu, Haohe and Yuan, Yi and Liu, Yuzhuo and Xia, Rui and Wang, Yuxuan and Plumbley, Mark D and Wang, Wenwu},
+  author={Liu, Xubo and Kong, Qiuqiang and Zhao, Yan and Liu, Haohe and Yuan, Yi, and Liu, Yuzhuo, and Xia, Rui and Wang, Yuxuan, and Plumbley, Mark D and Wang, Wenwu},
   journal={arXiv preprint arXiv:2308.05037},
   year={2023}
 }
