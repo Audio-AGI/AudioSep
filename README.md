@@ -104,7 +104,7 @@ Train AudioSep from scratch:
   python train.py --workspace workspace/AudioSep --config_yaml config/audiosep_base.yaml --resume_checkpoint_path checkpoint/ ''
   ```
 
-Finetune AudioSep from pretrained checkpoint:
+Finetune AudioSep from pre-trained checkpoint:
   ```python
   python train.py --workspace workspace/AudioSep --config_yaml config/audiosep_base.yaml --resume_checkpoint_path path_to_checkpoint
   ```

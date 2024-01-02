@@ -47,7 +47,7 @@ class DataModule(pl.LightningDataModule):
         # called on every process in DDP
 
         # SegmentSampler is used for selecting segments for training.
-        # On multiple devices, each SegmentSampler samples a part of mini-batch
+        # On multiple devices, each SegmentSampler samples a part of a mini-batch
         # data.
         self.train_dataset = self._train_dataset
         
