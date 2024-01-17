@@ -161,7 +161,7 @@ If you found this tool useful, please consider citing
 }
 ```
 
-# Our Contributors :
+## Contributors :
 <a href="https://github.com/Audio-AGI/AudioSep/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Audio-AGI/AudioSep" />
 </a>
