@@ -62,7 +62,7 @@ class AudioSetEvaluator:
         self,
         pl_model: pl.LightningModule
     ) -> Dict:
-        r"""Evalute."""
+        r"""Evaluate."""
 
         pl_model.eval()
 
