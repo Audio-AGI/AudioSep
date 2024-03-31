@@ -12,10 +12,6 @@ We introduce AudioSep, a foundation model for open-domain sound separation with 
 
 <hr>
 
-If you're using the pre-trained checkpoints for the DCASE 2024 Task 9 challenge, please note that this checkpoint was trained using audio at 32k Hz, with a window size of 2048 points and a hop size of 320 points in the STFT operation, which is different with the challenge baseline system provided (16k Hz, window size 1024, hop size 160).
-
-<hr>
-
 ## Setup
 Clone the repository and setup the conda environment: 
 
@@ -27,6 +23,8 @@ Clone the repository and setup the conda environment:
   ```
 Download [model weights](https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/main/checkpoint) at `checkpoint/`.
 
+
+If you're using this checkpoint for the DCASE 2024 Task 9 challenge participation, please note that this checkpoint was trained using audio at 32k Hz, with a window size of 2048 points and a hop size of 320 points in the STFT operation, which is different with the challenge baseline system provided (16k Hz, window size 1024, hop size 160).
 <hr>
 
 ## Inference 
