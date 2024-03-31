@@ -12,10 +12,7 @@ We introduce AudioSep, a foundation model for open-domain sound separation with 
 
 <hr>
 
-## TODO
-- [x] AudioSep training & fine-tuning code release.
-- [x] AudioSep base model checkpoint release.
-- [x] Evaluation benchmark release.
+If you're using the pre-trained checkpoints for the DCASE 2024 Task 9 challenge, please note that this checkpoint was trained using audio at 32k Hz, with a window size of 2048 points and a hop size of 320 points in the STFT operation, which is different with the challenge baseline system provided (16k Hz, window size 1024, hop size 160).
 
 <hr>
 
