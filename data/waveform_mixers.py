@@ -43,10 +43,10 @@ class SegmentMixer(nn.Module):
             # randomly normalize background noise
             noise = dynamic_loudnorm(audio=noise, reference=segment, **self.loudness_param)
 
-            # create audio mixyure
+            # create an audio mixture
             mixture = segment + noise
 
-            # declipping if need be
+            # Declipping if need be
             max_value = torch.max(torch.abs(mixture))
             if max_value > 1:
                 segment *= 0.9 / max_value
