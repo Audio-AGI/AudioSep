@@ -71,9 +71,9 @@ class CLAP_Encoder(nn.Module):
                 )
                 audio_dict_list.append(audio_dict)
                 # [bs, 512]
-                embed = self.model.get_audio_embedding(audio_dict_list)
+            embed = self.model.get_audio_embedding(audio_dict_list)
             
-                return embed.detach()
+            return embed.detach()
 
     def _get_text_embed(self, batch):
         double_batch = False
