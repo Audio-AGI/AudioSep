@@ -49,7 +49,7 @@ class VGGSoundEvaluator:
         self,
         pl_model: pl.LightningModule
     ) -> Dict:
-        r"""Evalute."""
+        r"""Evaluate."""
 
         print(f'Evaluation on VGGSound+ with [text label] queries.')
         

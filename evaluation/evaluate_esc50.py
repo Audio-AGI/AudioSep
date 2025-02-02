@@ -47,7 +47,7 @@ class ESC50Evaluator:
         self,
         pl_model: pl.LightningModule
     ) -> Dict:
-        r"""Evalute."""
+        r"""Evaluate."""
 
         print(f'Evaluation on ESC-50 with [text label] queries.')
         
