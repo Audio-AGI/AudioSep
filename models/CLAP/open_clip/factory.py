@@ -52,7 +52,16 @@ _rescan_model_configs()  # initial populate of model config registry
 
 
 def load_state_dict(checkpoint_path: str, map_location="cpu", skip_params=True):
-    checkpoint = torch.load(checkpoint_path, map_location=map_location)
+    # PyTorch ≥ 2.6: weights_only defaults to True, which breaks loading of
+    # CLAP checkpoints for two independent reasons:
+    #   1. The checkpoints use pickle protocol 4 (FRAME opcode), which the
+    #      weights_only unpickler does not support.
+    #   2. numpy.core.multiarray.scalar — present in the checkpoint — has
+    #      __module__ = 'numpy._core.multiarray' (post-numpy-1.24 rename) while
+    #      the pickle bytecode says 'numpy.core.multiarray'. The module path
+    #      mismatch means safe_globals allowlisting cannot match the opcode.
+    # The long-term fix is to re-save checkpoints in safetensors format.
+    checkpoint = torch.load(checkpoint_path, map_location=map_location, weights_only=False)
     if isinstance(checkpoint, dict) and "state_dict" in checkpoint:
         state_dict = checkpoint["state_dict"]
     else:
@@ -150,6 +159,17 @@ def create_model(
                     f"Loading pretrained {amodel_name}-{tmodel_name} weights ({pretrained})."
                 )
                 ckpt = load_state_dict(checkpoint_path, skip_params=True)
+                # Newer transformers made position_ids non-persistent; checkpoints saved
+                # with older transformers contain the key but the current model does not
+                # register it. Filter unexpected keys to keep strict loading intact.
+                model_keys = set(model.state_dict().keys())
+                unexpected = {k for k in ckpt if k not in model_keys}
+                if unexpected:
+                    logging.warning(
+                        "Ignoring %d checkpoint key(s) not present in model: %s",
+                        len(unexpected), unexpected,
+                    )
+                    ckpt = {k: v for k, v in ckpt.items() if k in model_keys}
                 model.load_state_dict(ckpt)
                 param_names = [n for n, p in model.named_parameters()]
                 # for n in param_names:
@@ -165,7 +185,7 @@ def create_model(
         if pretrained_audio:
             if amodel_name.startswith("PANN"):
                 if "Cnn14_mAP" in pretrained_audio:  # official checkpoint
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                     audio_ckpt = audio_ckpt["model"]
                     keys = list(audio_ckpt.keys())
                     for key in keys:
@@ -178,7 +198,7 @@ def create_model(
                 elif os.path.basename(pretrained_audio).startswith(
                     "PANN"
                 ):  # checkpoint trained via HTSAT codebase
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                     audio_ckpt = audio_ckpt["state_dict"]
                     keys = list(audio_ckpt.keys())
                     for key in keys:
@@ -188,12 +208,12 @@ def create_model(
                 elif os.path.basename(pretrained_audio).startswith(
                     "finetuned"
                 ):  # checkpoint trained via linear probe codebase
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                 else:
                     raise ValueError("Unknown audio checkpoint")
             elif amodel_name.startswith("HTSAT"):
                 if "HTSAT_AudioSet_Saved" in pretrained_audio:  # official checkpoint
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                     audio_ckpt = audio_ckpt["state_dict"]
                     keys = list(audio_ckpt.keys())
                     for key in keys:
@@ -206,7 +226,7 @@ def create_model(
                 elif os.path.basename(pretrained_audio).startswith(
                     "HTSAT"
                 ):  # checkpoint trained via HTSAT codebase
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                     audio_ckpt = audio_ckpt["state_dict"]
                     keys = list(audio_ckpt.keys())
                     for key in keys:
@@ -216,7 +236,7 @@ def create_model(
                 elif os.path.basename(pretrained_audio).startswith(
                     "finetuned"
                 ):  # checkpoint trained via linear probe codebase
-                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu")
+                    audio_ckpt = torch.load(pretrained_audio, map_location="cpu", weights_only=False)
                 else:
                     raise ValueError("Unknown audio checkpoint")
             else:
